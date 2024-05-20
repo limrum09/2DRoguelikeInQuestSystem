@@ -69,7 +69,6 @@ public class TaskGroup
 
     public void TaskGroupComplete()
     {
-        Debug.Log("TaskGroupComplete : " + Owner);
         if (IsComplete)
         {
             return;

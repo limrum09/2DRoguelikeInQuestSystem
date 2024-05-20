@@ -14,16 +14,18 @@ public class CountAndReward : MonoBehaviour
 
     private int rewardCount = 0;
 
-    private void OnDestroy()
+    private void OnApplicationQuit()
     {
-        if(target != null)
+        if (target != null)
         {
             target.onSuccessChange -= RefreshText;
         }
     }
+    
     public  void SetTask(Task task)
     {
         target = task;
+        target.onSuccessChange += RefreshText;
         categoryAndCount.text = $"{task.Category.CodeName} : {task.currentSuccess} / {task.NeedSuccessCount}";
     }
 

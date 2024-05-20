@@ -12,7 +12,6 @@ public class QuestGiver : MonoBehaviour
         var obj = FindObjectsOfType<QuestGiver>();
         if(obj.Length == 1)
         {
-            Debug.Log("Quest Giver Quest Giver Quest Giver Quest Giver");
             DontDestroyOnLoad(gameObject);
 
             foreach (var quest in quests)
