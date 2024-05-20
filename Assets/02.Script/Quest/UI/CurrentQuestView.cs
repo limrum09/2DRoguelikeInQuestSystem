@@ -21,9 +21,9 @@ public class CurrentQuestView : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnApplicationQuit()
     {
-      //  QuestSystem.Instance.onQuestRegistered -= CreateQeusts;
+        QuestSystem.Instance.onQuestRegistered -= CreateQeusts;
     }
 
     private void CreateQeusts(Quest quest)

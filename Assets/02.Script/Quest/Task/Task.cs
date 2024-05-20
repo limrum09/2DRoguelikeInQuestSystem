@@ -92,12 +92,16 @@ public class Task : ScriptableObject
     public void TaskSetup(Quest quest)
     {
         TaskOwner = quest;
+
+        if(CurrentSuccess >= needSuccessCount)
+        {
+            TaskComplete();
+        }
     }
 
     public void TaskStart()
     {
-        state = TaskState.Running;
-        
+        state = TaskState.Running;        
     }
 
     public void TaskEnd()
@@ -109,6 +113,8 @@ public class Task : ScriptableObject
     public void TaskComplete()
     {
         CurrentSuccess = needSuccessCount;
+
+        state = TaskState.Complete;
     }
 
     public  bool TaskIsTarget(string category, object target)

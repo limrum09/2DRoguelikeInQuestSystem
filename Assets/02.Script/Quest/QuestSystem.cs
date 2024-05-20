@@ -87,16 +87,15 @@ public class QuestSystem : MonoBehaviour
     {
         // 오류나 버그가 나면 저장 못함
         isApplicationQuitting = false;
+        Save();
     }
 
     public Quest QuestSystemRegister(Quest quest)
     {
-        Debug.Log("Quest : " + quest);
         var newQuest = quest.Clone();
 
         if(newQuest is Achievement)
         {
-            Debug.Log("Achievement");
             // 업적을 달성할 경우를 위해, 이벤트에 함수 추가
             newQuest.onQuestCompleted += OnAchievementComplet;
 
@@ -228,8 +227,8 @@ public class QuestSystem : MonoBehaviour
             LoadSaveDatas(root[kActiveQuestSavePath], questDatabase, LoadActiveQuest);
             LoadSaveDatas(root[kCompletedQuestSavePath], questDatabase, LoadCompletedQuest);
 
-            LoadSaveDatas(root[kActiveAchievementSavePath], questDatabase, LoadActiveQuest);
-            LoadSaveDatas(root[kCompletedAchievementSavePath], questDatabase, LoadCompletedQuest);
+            LoadSaveDatas(root[kActiveAchievementSavePath], achievementDatabase, LoadActiveQuest);
+            LoadSaveDatas(root[kCompletedAchievementSavePath], achievementDatabase, LoadCompletedQuest);
 
             return true;
         }
@@ -257,6 +256,8 @@ public class QuestSystem : MonoBehaviour
         onQuestCanceled?.Invoke(quest);
 
         Destroy(quest, Time.deltaTime);
+        
+        Save();
     }
 
     private void OnAchievementComplet(Quest achievement)
@@ -265,6 +266,8 @@ public class QuestSystem : MonoBehaviour
         completedAchievements.Add(achievement);
 
         onAchievementsCompleted?.Invoke(achievement);
+
+        Save();
     }
     #endregion
 }

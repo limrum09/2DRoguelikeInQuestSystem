@@ -76,6 +76,7 @@ public class QuestView : MonoBehaviour
     {
         if (isOn)
         {
+            Debug.Log("ShowDetail");
             questDetailView.Show(quest);
         }
     }
@@ -92,6 +93,7 @@ public class QuestView : MonoBehaviour
         // 시작하자마자 제일 위에 있는 퀘스트 정보 보여주기
         if(questDetailView != null)
         {
+            Debug.Log("OnEnable");
             questDetailView.Show(questDetailView.Target);
         }
     }

@@ -24,15 +24,12 @@ public class Talker : ScriptableObject
     public List<TalkContent> acceptionTalk;
     [SerializeField]
     public List<TalkContent> cancelTalk;
-
-    private void OnDestroy()
-    {
-        QuestSystem.Instance.onQuestSystemComplete -= Questcompleted;
-    }
-
+    
     public void Questcompleted()
     {
         Debug.Log("Äù½ºÆ® ÇØ°á!");
         condition = TalkerConditon.Running;
+
+        QuestSystem.Instance.onQuestSystemComplete -= Questcompleted;
     }
 }
