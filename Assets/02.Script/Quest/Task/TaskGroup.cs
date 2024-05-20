@@ -36,15 +36,27 @@ public class TaskGroup
         {
             task.TaskSetup(owner);
         }
+
+        if (IsAllTaskComplete)
+        {
+            State = TaskGroupState.Complete;
+        }
+            
     }
 
     public void TaskGroupStart()
     {
+        if (IsAllTaskComplete)
+        {
+            State = TaskGroupState.Complete;
+            return;
+        }
+
         State = TaskGroupState.Running;
         foreach(var task in tasks)
         {
             task.TaskStart();
-        }
+        }            
     }
 
     public void TaskGroupEnd()
