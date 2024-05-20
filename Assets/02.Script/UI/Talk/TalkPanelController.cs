@@ -67,7 +67,6 @@ public class TalkPanelController : MonoBehaviour
             Debug.LogError("Add it temporarily from QuestSystem.");
             QuestSystem.Instance.QuestSystemRegister(quest);
         }
-
         QuestSystem.Instance.onQuestSystemComplete += questContent.Questcompleted;
         QuestSystem.Instance.Save();
         talkIndex = 0;

@@ -91,10 +91,12 @@ public class QuestSystem : MonoBehaviour
 
     public Quest QuestSystemRegister(Quest quest)
     {
+        Debug.Log("Quest : " + quest);
         var newQuest = quest.Clone();
 
         if(newQuest is Achievement)
         {
+            Debug.Log("Achievement");
             // 업적을 달성할 경우를 위해, 이벤트에 함수 추가
             newQuest.onQuestCompleted += OnAchievementComplet;
 
@@ -244,11 +246,6 @@ public class QuestSystem : MonoBehaviour
         onQuestCompleted?.Invoke(quest);
         completedQuests.Add(quest);
         activeQuests.Remove(quest);
-
-        foreach(var completed in onQuestCompleted.GetInvocationList())
-        {
-            Debug.Log("Method : " + completed);
-        }
 
         Save();
     }

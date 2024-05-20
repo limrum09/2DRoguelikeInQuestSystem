@@ -14,12 +14,9 @@ public class CurrentQuestView : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Current Quest View Start");
-
         QuestSystem.Instance.onQuestRegistered += CreateQeusts;
         foreach(var quest in QuestSystem.Instance.ActiveQuests)
         {
-            Debug.Log("Start Create Quest");
             CreateQeusts(quest);
         }
     }
@@ -31,7 +28,6 @@ public class CurrentQuestView : MonoBehaviour
 
     private void CreateQeusts(Quest quest)
     {
-        Debug.Log("Create Quest");
         if (quest.IsComplete)
             return;
         else

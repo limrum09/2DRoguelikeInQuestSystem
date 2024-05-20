@@ -45,6 +45,6 @@ public class AchievementView : MonoBehaviour
 
         newAchievement.AchievementRegister(achievement, condition);
 
-        QuestSystem.Instance.onAchievementsCompleted += newAchievement.AchievementCompleted;
+        // QuestSystem.Instance.onAchievementsCompleted += newAchievement.AchievementCompleted;
     }
 }

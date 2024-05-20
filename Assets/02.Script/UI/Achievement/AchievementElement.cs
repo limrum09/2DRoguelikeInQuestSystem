@@ -29,7 +29,7 @@ public class AchievementElement : MonoBehaviour
     private bool onView;
     public TextMeshProUGUI CodeName => codeName;
 
-    private void OnDestroy()
+    private void OnApplicationQuit()
     {
         QuestSystem.Instance.onAchievementsCompleted -= AchievementCompleted;
     }
@@ -53,13 +53,14 @@ public class AchievementElement : MonoBehaviour
         {
             countAndReward.SetReward(reward);
         }
-        achievementTask.onSuccessChange += countAndReward.RefreshText;
+        //achievementTask.onSuccessChange += countAndReward.RefreshText;
+        QuestSystem.Instance.onAchievementsCompleted += AchievementCompleted;
         IsViewAchievement();
     }
 
     public void IsViewAchievement()
     {
-        onView = target.IsAcceiption;
+        onView = target.IsAcceiption || target.IsComplete;
         this.gameObject.SetActive(onView);
     }
 
